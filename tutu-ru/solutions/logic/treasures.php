@@ -1,4 +1,5 @@
 <?
+include './functions.php';
 
 /*
 2. Вы нашли клад! Перед вами находятся камни двух типов: одни с массой `m1` и ценой `p1`, другие - с массой `m2` и ценой `p2`. 
@@ -22,58 +23,41 @@
 
 */
 $testsCases = [
-	// простой случай: большой рюкзак и много места, болльшие камни сильно дороже
-	50 => [
-		['m'=>4, 'p'=>1], 
-		['m'=>7, 'p'=>12], 
-	],
-	// кейс, когда надо выбрать один более дорогой камень
-	2 => [ 
-		['m'=>2, 'p'=>1], 
-		['m'=>2, 'p'=>5], 
-	],
-	// интересный кейс, когда 3 более дешевых маленьких камня стоят больше чем 2 дорогих крупных 
-	12 => [ 
-		['m'=>4, 'p'=>5], 
-		['m'=>3, 'p'=>4], 
-	],
+    // простой случай: большой рюкзак и много места, большие камни сильно дороже
+    25 => [
+        ['m' => 7, 'p' => 12],
+        ['m' => 4, 'p' => 1],
+    ],
+    // кейс, когда надо выбрать один более дорогой камень
+    2 => [
+        ['m' => 2, 'p' => 1],
+        ['m' => 2, 'p' => 5],
+    ],
+    // интересный кейс, когда 4 более дешевых маленьких камня стоят больше чем 3 дорогих крупных
+    12 => [
+        ['m' => 4, 'p' => 5],
+        ['m' => 3, 'p' => 4],
+    ],
+    // ну, и чисто посмотреть на производительность алгоритма, с учетом СИЛЬНОГО кладоискателя и реальных размеров камней
+    // как показали замеры, даже самый тупой алгортим с переборкой занимает около 2мс на этих данных
+    60 => [
+        ['m' => 0.0001, 'p' => 1/*000*/],
+        ['m' => 0.003, 'p' => 4/*000*/],
+    ],
 ];
 
+echo '<pre>';
 
-/**
- * функция определяет каких камней по сколько взять, чтобы набрать максимум стоимости, в случае, если можно брать толкьо по одному
- * и также отдает максимальную сумму, как было сказано в условии задачи.
- */
-function chooseOnlyOneByEveryType($maxMass,$stoneTypes){
-	// важно, т.к. значения входных данных передаются не по ссылкам, можно их использовать в алгоритме и модифицировать. Иначе - надо делать копии
-	$res = [
-		'sum'=>0,
-		'weight'=>0,
-		'takenStones'=>[]
-	];
-	// первым делом сортируем камни по уменьшению цены, тут нет смысла размышлять - берем самые дорогие сколько влезет
-	uasort($stoneTypes, function($stoneA,$stoneB){
-		return $stoneB['p'] <=> $stoneA['p'];
-	});
-	//
-	foreach($stoneTypes as $stoneType){
-		// проверить, что место еще осталось
-		if($maxMass < $stoneType['m']) 
-			break;
-		$res['sum'] += $stoneType['p'];
-		$res['weight'] += $stoneType['m'];
-		$stoneType['count'] = 1;
-		$res['takenStones'][] = $stoneType;
-		$maxMass -= $stoneType['m'];
-	}
-	return $res;
-}
+foreach ($testsCases as $maxMass => $stoneTypes) {
+    var_dump('$maxMass ' . $maxMass);
+    var_dump('$stoneTypes input');
+    var_dump($stoneTypes);
+    // $res = chooseOnlyOneByEveryType($maxMass,$stoneTypes);
+    // echo 'chooseOnlyOneByEveryType result: <br>';
+    // var_dump($res);
+    $res = chooseMaxPricedDumb($maxMass, $stoneTypes);
+    echo 'chooseMaxPricedDumb result: <br>';
 
-foreach ($testsCases as $maxMass => $stoneTypes){
-	var_dump('$maxMass '.$maxMass);
-	var_dump('$stoneTypes input');
-	var_dump($stoneTypes);
-	$res = chooseOnlyOneByEveryType($maxMass,$stoneTypes);
-	var_dump($res);
-	echo '******************************<br><br>';
+    var_dump($res);
+    echo '******************************<br><br>';
 }
