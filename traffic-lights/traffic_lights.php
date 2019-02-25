@@ -55,12 +55,13 @@ $lightsInput = json_decode(
     true);
 // correct answer = 6
 
+/*
 // Fast lights
 $speed = 90;
 $lightCount = 16;
 $lightsInput = json_decode('[[1234,5],[2468,5],[3702,5],[6170,5],[8638,5],[13574,5],[16042,5],[20978,5],[23446,5],[28382,5],[35786,5],[38254,5],[45658,5],[50594,5],[53062,5],[57998,5]]',true);
 // correct answer = 74
-
+*/
 
 // make from input arrays array of objects
 $lights = [];
@@ -92,7 +93,7 @@ echo($neededSpeed."\n");
 
 
 class TrafficLight {
-    const SPEED_СOEF = 3.6; // m/s * SPEED_СOEF =  km/h
+    const SPEED_COEF = 3.6; // m/s * SPEED_СOEF =  km/h
 
     private $distance;
     private $duration;
@@ -103,7 +104,8 @@ class TrafficLight {
         $this -> duration = $duration;
         $this -> maxSpeed = $maxSpeed;
         // car can cross the light only in even periods, so 0,2,4.. and until speed is higher then max
-        for($i=0;;$i+=2){
+        // 2000 is empirical value, just in case of internal loop
+        for($i=0;$i<2000;$i+=2){
             $minSpeed = self::cycleMinSpeed($i+1);
             if($minSpeed > $this -> maxSpeed){
                 // car cannot move so fast
@@ -114,12 +116,26 @@ class TrafficLight {
             }else{
                 $maxSpeed = self::cycleMinSpeed($i);
             }
+            // throw away ranges, which does not contain int numbers
+            if(floor($minSpeed) == floor($maxSpeed)){
+                continue;
+            }
+            /*
+            @todo: replace cyclic check ranges with more efficient, for example, isset
+            end TEST it!
+            for($intSpeed = ceil($minSpeed); $intSpeed <= floor($maxSpeed); $intSpeed++){
+                $this->allowedSpeeds[$intSpeed] = true;
+            }
+
+            ...
+            in checkSpeed will be:
+            isset($this->allowedSpeeds[$speed]);
+
+            */
             $this->speedRanges[] = [
                 'min'=>$minSpeed,
                 'max'=>$maxSpeed
             ];
-
-            if($i > 1000) break; // fallback for testing
         }
     }
 
@@ -133,9 +149,8 @@ class TrafficLight {
     }
 
     function cycleMinSpeed($i){
-        // todo: the second the light turnes red
-        // as an idea: (($i * $this->duration ) + ($i%2 ? 1 : 0)), needs to be checked
-        return $minSpeed = self::SPEED_СOEF * $this->distance
+        // todo: the second the light turnes red ?
+        return $minSpeed = self::SPEED_COEF * $this->distance
             / ($i * $this->duration )
             ;
     }
