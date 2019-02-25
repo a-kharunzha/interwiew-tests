@@ -69,7 +69,11 @@ foreach($lightsInput as $light){
     $lights[] = new TrafficLight($speed,$light[0],$light[1]);
 }
 var_dump('$lights');
-
+/*
+@todo: better way:
+1) calculate not ranges for every light, but all integer acceptable speed
+2) find $neededSpeed as max(array_intersect($light1Speeds, $light2Speeds, ... $lightNSpeeds));
+*/
 for($neededSpeed = $speed;$neededSpeed > 0;$neededSpeed--){
     $ok = true;
     foreach($lights as $light){
