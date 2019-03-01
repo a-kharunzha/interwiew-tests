@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0934ae6c97623552b1ed572a0e3bf743",
+    "content-hash": "91ee36f693a2e475a99a986c9794999e",
     "packages": [
         {
             "name": "cakephp/cache",
@@ -1510,6 +1510,48 @@
             "time": "2019-02-23T15:22:31+00:00"
         },
         {
+            "name": "umpirsky/country-list",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/umpirsky/country-list.git",
+                "reference": "ad8f48405cc470d49dd535e2f2392e6572539d24"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/umpirsky/country-list/zipball/ad8f48405cc470d49dd535e2f2392e6572539d24",
+                "reference": "ad8f48405cc470d49dd535e2f2392e6572539d24",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "slowprog/composer-copy-file": "^0.2",
+                "symfony/locale": "^2.7|^3.0",
+                "umpirsky/list-generator": "^1.2"
+            },
+            "type": "library",
+            "extra": {
+                "copy-file": {
+                    "vendor/umpirsky/list-generator/Dockerfile": "./",
+                    "vendor/umpirsky/list-generator/docker-compose.yml": "./"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Saša Stamenković",
+                    "email": "umpirsky@gmail.com"
+                }
+            ],
+            "description": "List of all countries with names and ISO 3166-1 codes in all languages and data formats.",
+            "time": "2018-05-11T06:49:56+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "dev-master",
             "source": {
@@ -1571,6 +1613,7 @@
         "vlucas/phpdotenv": 20,
         "longman/telegram-bot": 20,
         "robmorgan/phinx": 20,
+        "umpirsky/country-list": 20,
         "stidges/country-flags": 20
     },
     "prefer-stable": false,

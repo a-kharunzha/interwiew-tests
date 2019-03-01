@@ -20,5 +20,8 @@ $DB  = new fDatabase(
     getenv('DB_PORT')
 );
 
+// для отладки запросов раскомментить
+// $DB->enableDebugging(TRUE);
+
 // attach connect to ORM
 \fORMDatabase::attach($DB);
