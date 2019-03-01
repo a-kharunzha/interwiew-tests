@@ -1,1 +1,8 @@
+/vendor/
+*.sublime*
+*.log
+.env
 .idea/
+*.p12
+*.cer
+*.http

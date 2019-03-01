@@ -1,0 +1,13 @@
+{
+	"autoload": {
+        "psr-4": {
+            "TuTuRu\\Command\\": "tutu-ru/solutions/country_bot/cli-commands"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "symfony/console": "^4.3@dev",
+		"vlucas/phpdotenv": "^3.3@dev",
+		"longman/telegram-bot": "dev-master"
+	}
+}
