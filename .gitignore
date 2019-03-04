@@ -2,7 +2,7 @@
 *.sublime*
 *.log
 .env
-.idea/
+.idea/*
 *.p12
 *.cer
 *.http
