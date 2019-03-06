@@ -18,5 +18,22 @@
 	},
 	"require-dev": {
 		"phpunit/phpunit": "^8.1@dev"
+	},
+	"scripts": {
+		"bot:test": [
+			"\"vendor/bin/phpunit\" -c tutu-ru/solutions/country_bot/phpunit.xml"
+		],
+		"bot:migrate": [
+			"\"vendor/bin/phinx\" migrate -c tutu-ru/solutions/country_bot/phinx.php"
+		],
+		"bot:rollback": [
+			"\"vendor/bin/phinx\" rollback -c tutu-ru/solutions/country_bot/phinx.php"
+		],
+		"bot:seed_countries": [
+			"php tutu-ru/solutions/country_bot/cli.php telegram_bot:import_countries"
+		],
+		"bot:test_update_coverage": [
+			"\"vendor/bin/phpunit\" --coverage-html tutu-ru/solutions/country_bot/build/coverage -c tutu-ru/solutions/country_bot/phpunit.xml"
+		]
 	}
 }

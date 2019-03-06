@@ -48,6 +48,11 @@ class ImportBotCountriesCommand extends Command
                 $row->setCode($code);
                 $created ++;
             }
+            /*
+            @todo: не выполнять запросы к БД, если поля не обновились
+            как стало ясно из исходников fActiveRecord::constructUpdateParams()
+            flourish проверяет неизменность значения только для автоинкремент полей (хз, почему)
+            */
             $row -> setNameEn($nameEn) ;
             $row -> setNameRu($listRu[$code]) ;
             $row -> setWikiLink($this->getCountryWikiLink($nameEn));
