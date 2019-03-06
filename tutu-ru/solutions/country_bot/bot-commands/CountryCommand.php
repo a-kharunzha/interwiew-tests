@@ -65,7 +65,7 @@ class CountryCommand extends UserCommand
     }
 
 
-    protected function makeAnswer(Message $message): string {
+    public function makeAnswer(Message $message): string {
         // получаем из текста то, что может быть названием страны
         $name = $message->getText(true);
         // ищем эту страну

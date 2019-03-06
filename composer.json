@@ -2,7 +2,8 @@
 	"autoload": {
         "psr-4": {
             "TuTuRu\\Command\\": "tutu-ru/solutions/country_bot/cli-commands",
-            "TuTuRu\\Model\\": "tutu-ru/solutions/country_bot/Model"
+            "TuTuRu\\Model\\": "tutu-ru/solutions/country_bot/Model",
+            "Longman\\TelegramBot\\Commands\\UserCommands\\": "tutu-ru/solutions/country_bot/bot-commands"
         }
     },
     "minimum-stability": "dev",
@@ -14,5 +15,8 @@
 		"robmorgan/phinx": "dev-master",
 		"umpirsky/country-list": "dev-master",
 		"stidges/country-flags": "dev-master"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^8.1@dev"
 	}
 }
