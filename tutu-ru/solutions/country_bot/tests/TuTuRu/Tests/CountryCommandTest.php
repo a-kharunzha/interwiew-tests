@@ -31,6 +31,10 @@ class CountryCommandTest extends TestCase
      * @param bool $willBeCalled
      *
      * @dataProvider casesProvider
+     * @covers \Longman\TelegramBot\Commands\UserCommands\CountryCommand::makeAnswer
+     * @covers \Longman\TelegramBot\Commands\UserCommands\CountryCommand::makeCountryAnswer
+     * @covers \Longman\TelegramBot\Commands\UserCommands\CountryCommand::searchCountry
+     * @covers \Longman\TelegramBot\Commands\UserCommands\CountryCommand::makeNotFoundAnswer
      *
      * @throws \Longman\TelegramBot\Exception\TelegramException
      * @throws \ReflectionException

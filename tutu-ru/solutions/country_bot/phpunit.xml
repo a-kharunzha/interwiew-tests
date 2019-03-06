@@ -9,4 +9,9 @@
             <directory>./tests</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./bot-commands</directory>
+        </whitelist>
+    </filter>
 </phpunit>

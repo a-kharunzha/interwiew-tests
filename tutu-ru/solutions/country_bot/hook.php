@@ -11,9 +11,9 @@ $bot_api_key = getenv('TELEGRAM_BOT_TOKEN');
 $bot_username = getenv('TELEGRAM_BOT_NAME');
 
 try {
-    TelegramLog::initUpdateLog(__DIR__ . '/_update.log');
-    TelegramLog::initErrorLog(__DIR__ . '/_error.log');
-    TelegramLog::initDebugLog(__DIR__ . '/_debug.log');
+    TelegramLog::initUpdateLog(__DIR__ . '/build/logs/_update.log');
+    TelegramLog::initErrorLog(__DIR__ . '/build/logs/_error.log');
+    TelegramLog::initDebugLog(__DIR__ . '/build/logs/_debug.log');
 
     // Create Telegram API object
     $telegram = new Telegram($bot_api_key, $bot_username);
