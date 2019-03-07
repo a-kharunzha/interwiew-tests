@@ -1,0 +1,3 @@
+[submodule "tutu-ru/php-interview"]
+	path = tutu-ru/php-interview
+	url = git@github.com:tutu-ru/php-interview.git
